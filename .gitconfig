@@ -1,0 +1,31 @@
+[alias]
+    #### INFORMATION ####
+    branch-name = "!git rev-parse --abbrev-ref HEAD"
+    logp = log --pretty=format:'%<(8)%h%Cgreen%<(17) %cd%Creset%<(15)%an %Cgreen%s' --date=format:'%Y-%m-%d %H:%M'
+    st = status
+    hash = rev-parse HEAD
+    shorthash = rev-parse --short HEAD
+
+    lol = log --graph --pretty=format:'%C(yellow)%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cblue(%cr)%Creset' --abbrev-commit --date=relative
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+
+    #### CLEANING ####
+    rmbra = push --no-verify origin --delete
+    rmbraloc = branch -D
+    erasebr = !git rmbra $1 && git rmbraloc $1
+    
+    #### MODIFICATION ####
+    co = checkout
+    cof = commit --fixup
+    hcof = commit --fixup HEAD
+    acof = "!(git add -u && git commit --fixup HEAD)"
+    coa = commit --amend
+    rebs = rebase --interactive --autosquash
+    cp = cherry-pick
+    br = branch
+    publish = "!git push -u origin $(git branch-name)"
+    sync = "!(git fetch && git rebase origin/master)"
+    
+    #### SCRIPTS ####
+    aca = "!(git add -u && git commit --amend --no-edit)"
+    rmallbranches = !bash rmbranches $1
